@@ -13,6 +13,7 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
   data() {
     return {
@@ -26,6 +27,19 @@ export default {
       // 폼의 기본동작 ==> 새로고침
       // e.preventDefault(); // 폼 기본동작 막기 => 자바스크립트 방식
       console.log(this.username, this.password);
+      const url = "https://jsonplaceholder.typicode.com/users";
+      const data = {
+        username: this.username,
+        password: this.password,
+      };
+      axios
+        .post(url, data)
+        .then(response => {
+          console.log(response);
+        })
+        .catch(error => {
+          console.log(error);
+        });
     },
   },
 };
